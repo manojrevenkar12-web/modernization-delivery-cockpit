@@ -106,6 +106,9 @@ python -m mdc report                      # REPORT.md, this dashboard, web/publi
 cd web && npm ci && npm run dev           # the dashboard
 ```
 
+CI runs the tests and the three dev workloads (3,255 service calls) against a real MongoDB 7.0 on every push.
+Every call agrees.
+
 ## Held-out rule
 
 The parity workloads and the simulated engagements come from seeded generators. The dev sets were used while
