@@ -119,6 +119,11 @@ class used on the held-out engagements was computed from the dev engagements onl
   as text, and a case-sensitive LIKE. Locally the MongoDB side runs on mongomock; CI runs the tests and the dev
   parity workloads against MongoDB 7.0. MongoDB 8.x does not start on the CI runners' Linux 6.19+ kernel yet
   (SERVER-121912).
+- **Real MongoDB found a bug in the comparison.** The first CI run on real MongoDB showed that the
+  comparison never applied its row-order rule. Results were compared exactly as returned, which is stricter
+  than intended, so mongomock (which returns rows in insertion order) agreed by accident. The comparison is
+  fixed: rows the SQL leaves unordered compare as a set, and ORDER BY results must keep their order. The
+  held-out run, made under the stricter rule, stands.
 - **Not every translation mistake is caught.** Parity catches 5 of the 6 planted ones. It misses *orders without
   a status are shown*, because no user journey creates such an order. Closing that needs a fault journey, for
   example a crash between the order and its status write.

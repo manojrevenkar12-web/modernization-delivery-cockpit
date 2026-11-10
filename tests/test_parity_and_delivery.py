@@ -39,7 +39,12 @@ def test_parity_catches_translation_mistakes(name):
 def test_normalise_ignores_unordered_rows_only():
     a = [{"x": 1}, {"x": 2}]
     assert normalise("category_list", a) == normalise("category_list", a[::-1])
-    assert normalise("orders_by_user", [{"orderdate": "2026-01-02"}, {"orderdate": "2026-01-01"}])[0]["orderdate"] == "2026-01-01"
+    asc = [{"orderdate": "2026-01-01", "id": 1}, {"orderdate": "2026-01-01", "id": 2}, {"orderdate": "2026-01-02", "id": 3}]
+    assert normalise("orders_by_user", asc) == normalise("orders_by_user", [asc[1], asc[0], asc[2]])   # tie
+    assert normalise("orders_by_user", asc) != normalise("orders_by_user", asc[::-1])                 # wrong order
+    # results arrive wrapped as {"ok": ...}; the row order the SQL leaves open must still be ignored
+    assert normalise("search", {"ok": a}) == normalise("search", {"ok": a[::-1]})
+    assert normalise("search", {"error": "duplicate key"}) == {"error": "duplicate key"}
 
 
 def test_intake_finds_the_known_risks():

@@ -44,7 +44,7 @@
   "suppliers": 2
  },
  "backend": "mongomock",
- "seconds": 1.0,
+ "seconds": 1.05,
  "runs": [
   {
    "operations": 1094,

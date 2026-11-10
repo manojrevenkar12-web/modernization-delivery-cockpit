@@ -40,12 +40,21 @@ def _canon(value):
 
 
 def normalise(op: str, result):
+    if isinstance(result, dict) and set(result) <= {"ok", "error"}:
+        return {k: (normalise(op, v) if k == "ok" else v) for k, v in result.items()}
     result = _canon(result)
     if isinstance(result, list) and op not in ORDERED_OPS:
         return sorted(result, key=lambda r: json.dumps(r, sort_keys=True, default=str))
     if op in ORDERED_OPS and isinstance(result, list):
-        # ORDER BY ORDERDATE leaves ties unordered: compare within equal dates as sets.
-        return sorted(result, key=lambda r: (r.get("orderdate"), json.dumps(r, sort_keys=True, default=str)))
+        # ORDER BY ORDERDATE: the sequence of dates must match as returned; rows that
+        # share a date are a tie the SQL leaves unordered, so they compare as a set.
+        groups: list[list] = []
+        for row in result:
+            if groups and groups[-1][0] == row.get("orderdate"):
+                groups[-1][1].append(row)
+            else:
+                groups.append([row.get("orderdate"), [row]])
+        return [[d, sorted(rows, key=lambda r: json.dumps(r, sort_keys=True, default=str))] for d, rows in groups]
     return result
 
 
