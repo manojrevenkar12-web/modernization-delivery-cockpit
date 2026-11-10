@@ -2,7 +2,8 @@ name: ci
 on: [push, pull_request]
 jobs:
   python-on-mongodb:
-    runs-on: ubuntu-latest
+    # MongoDB 8.0 refuses to start on Linux 6.19+ kernels (SERVER-121912); Ubuntu 24.04 runners use an older kernel.
+    runs-on: ubuntu-24.04
     services:
       mongo:
         image: mongo:8.0
