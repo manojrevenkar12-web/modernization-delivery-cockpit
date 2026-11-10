@@ -771,7 +771,7 @@
    "caught": true,
    "divergent_calls": 53,
    "first_caught_at_call": 95,
-   "doc": "Drops ORDER BY ORDERDATE: order history comes back in insertion order."
+   "doc": "Drops ORDER BY ORDERDATE. On a real MongoDB the (username, orderDate) index\nhides this mistake, because an index scan returns rows in date order anyway,\nuntil the planner picks another plan. The natural-order hint plays that plan\nout, so the mistake is visible on every backend."
   },
   "inventory-increment": {
    "caught": true,

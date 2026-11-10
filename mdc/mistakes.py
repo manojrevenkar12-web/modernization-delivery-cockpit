@@ -44,10 +44,14 @@ class LiteralUnderscore(MongoRepository):
 
 
 class UnsortedHistory(MongoRepository):
-    """Drops ORDER BY ORDERDATE: order history comes back in insertion order."""
+    """Drops ORDER BY ORDERDATE. On a real MongoDB the (username, orderDate) index
+    hides this mistake, because an index scan returns rows in date order anyway,
+    until the planner picks another plan. The natural-order hint plays that plan
+    out, so the mistake is visible on every backend."""
 
     def getOrdersByUsername(self, p):
-        return [self._order(d) for d in self.db.orders.find({"username": p["value"], "status": {"$exists": True}})]
+        cur = self.db.orders.find({"username": p["value"], "status": {"$exists": True}}).hint([("$natural", 1)])
+        return [self._order(d) for d in cur]
 
 
 class InventoryIncrement(MongoRepository):
