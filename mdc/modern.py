@@ -20,7 +20,7 @@ the same shape the legacy SQL returns, so the two sides can be compared call by
 call. Legacy behaviour is kept where the comparison found a difference that a
 customer would notice; each such choice is a decision in config/decisions.json.
 
-Connect to a real MongoDB with MONGO_URI (CI runs against a mongo:8 service);
+Connect to a real MongoDB with MONGO_URI (CI runs against a mongo:7.0 service);
 without it the repository uses mongomock in process.
 """
 

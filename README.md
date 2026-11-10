@@ -84,7 +84,7 @@ legacy/jpetstore (Java, MyBatis XML, DDL, seed data; unchanged)
 | Path | What it is |
 |---|---|
 | `mdc/intake.py` | Statement facts, service methods, rule-based findings, work packages |
-| `mdc/legacy.py`, `mdc/modern.py` | The two data layers; `modern.connect()` uses `MONGO_URI` (CI runs MongoDB 8.0) or mongomock |
+| `mdc/legacy.py`, `mdc/modern.py` | The two data layers; `modern.connect()` uses `MONGO_URI` (CI runs MongoDB 7.0) or mongomock |
 | `mdc/service.py` | AccountService, CatalogService and OrderService, as JPetStore wrote them |
 | `mdc/parity.py`, `mdc/mistakes.py` | Workload generator, comparison, planted mistakes |
 | `mdc/forecast.py`, `mdc/engagements.py` | Plan, Monte Carlo, rolling forecast; the simulated engagements and their scoring |
@@ -117,7 +117,8 @@ class used on the held-out engagements was computed from the dev engagements onl
 
 - **The legacy side runs on SQLite, not HSQLDB.** Two adjustments keep HSQLDB's behaviour: exact decimals stored
   as text, and a case-sensitive LIKE. Locally the MongoDB side runs on mongomock; CI runs the tests and the dev
-  parity workloads against MongoDB 8.0.
+  parity workloads against MongoDB 7.0. MongoDB 8.x does not start on the CI runners' Linux 6.19+ kernel yet
+  (SERVER-121912).
 - **Not every translation mistake is caught.** Parity catches 5 of the 6 planted ones. It misses *orders without
   a status are shown*, because no user journey creates such an order. Closing that needs a fault journey, for
   example a crash between the order and its status write.
