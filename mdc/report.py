@@ -1,0 +1,114 @@
+"""Generate reports/REPORT.md, the README dashboard block and web/public/data.json
+from reports/*.json. Rerun `python -m mdc report` after any run; nothing between
+the README markers is typed by hand."""
+
+from __future__ import annotations
+
+import json
+import re
+
+from mdc.legacy import ROOT
+
+REPORTS = ROOT / "reports"
+START, END = "<!-- dashboard:start -->", "<!-- dashboard:end -->"
+
+
+def _load(name):
+    p = REPORTS / name
+    return json.loads(p.read_text()) if p.exists() else None
+
+
+def _pct(x):
+    return "–" if x is None else f"{x * 100:.1f}%".replace(".0%", "%")
+
+
+def _tests():
+    import xml.etree.ElementTree as ET
+    p = REPORTS / "tests.xml"
+    if not p.exists():
+        return None
+    root = ET.parse(p).getroot()
+    suite = root if root.tag == "testsuite" else root.find("testsuite")
+    total = int(suite.get("tests", 0))
+    failed = int(suite.get("failures", 0)) + int(suite.get("errors", 0))
+    return {"total": total, "passed": total - failed - int(suite.get("skipped", 0)), "failed": failed}
+
+
+def collect() -> dict:
+    d = {k: _load(f) for k, f in {
+        "intake": "intake.json", "parity_dev": "parity_dev.json", "parity_heldout": "heldout/parity_first_run.json",
+        "mistakes": "mistakes.json", "eng_dev": "engagements_dev.json",
+        "eng_heldout": "heldout/engagements_first_run.json", "cockpit": "cockpit.json"}.items()}
+    d["tests"] = _tests()
+    return d
+
+
+def dashboard(d: dict) -> str:
+    out = []
+    c, ph, eh, m, i = d["cockpit"], d["parity_heldout"], d["eng_heldout"], d["mistakes"], d["intake"]
+    if c:
+        f, s = c["facts"], c["status"]
+        out += [f"**Steering view, week ending {f['status_week']}: {s['overall'].upper()}**", "",
+                "| Area | Status | Evidence |", "|---|---|---|"]
+        out += [f"| {a.title()} | {s[a]['colour']} | {s[a]['reason']} |" for a in ("schedule", "quality", "risk")]
+        out += ["", f"Scope from the code: {f['work_packages']} work packages, {f['points']} points. Finish 50% likely "
+                f"{f['p50_date']}; committed at 85% {f['commit_date']}; customer target {f['target_date']}.", ""]
+    if i:
+        inv = i["inventory"]
+        out += [f"**Analysis of the legacy app** (JPetStore 6, unchanged): {inv['java_files']} Java files, "
+                f"{inv['java_lines']:,} lines, {inv['tables']} tables, {inv['statements']} SQL statements "
+                f"({inv['writes']} writes, {inv['joins']} joins), {inv['transactional_methods']} transactional "
+                f"service methods; {len(i['findings'])} findings raised by rules, "
+                f"{sum(f['severity'] == 'high' for f in i['findings'])} of them high.", ""]
+    if ph:
+        out += [f"**Behavioural parity, held-out workload run once**: {ph['agreed']:,} of {ph['operations']:,} "
+                f"service calls return the same result from MongoDB as from the legacy SQL; "
+                f"{ph['statements_validated']} of {ph['statements_total']} legacy statements validated."]
+        if m:
+            caught = sum(v["caught"] for v in m.values())
+            out[-1] += (f" The harness catches {caught} of {len(m)} classic translation mistakes planted in the "
+                        "MongoDB code; the one it misses is listed under Limits.")
+        out.append("")
+    if eh:
+        sc = eh["score"]
+        ms = sc["methods"]
+        out += [f"**Forecasting track record**: {sc['engagements']} held-out simulated engagements, run once, "
+                f"commitments made at kickoff:", "",
+                "| Commitment method | On time | Late, warned before the due date | Median warning lead | "
+                "False alarms | Median buffer over the plan |", "|---|---:|---:|---:|---:|---:|"]
+        names = {"plan": "Single-number plan", "monte_carlo": "Team's own Monte Carlo, 85th percentile",
+                 "reference_class": "**Reference class from past engagements, 85th percentile**"}
+        for k in ("plan", "monte_carlo", "reference_class"):
+            x = ms[k]
+            lead = "–" if x["median_warning_lead_sprints"] is None else f"{x['median_warning_lead_sprints']:g} sprints"
+            out.append(f"| {names[k]} | {_pct(x['on_time'])} | {x['late_warned_before_due']} of {x['late']} | {lead} | "
+                       f"{x['false_alarms']} | {x['median_buffer_sprints']:g} sprints |")
+        mae = sc["mae_sprints"]
+        cp = sc["checkpoint_sprint"]
+        rolling = mae[f"rolling_p50_at_sprint_{cp}"]
+        out += ["", f"Forecast error (mean absolute, sprints): plan {mae['plan']}, Monte Carlo median "
+                f"{mae['monte_carlo_p50']}, rolling forecast from observed throughput at sprint {cp}: {rolling}.", ""]
+    if d["tests"]:
+        t = d["tests"]
+        out += [f"Tests: {t['passed']} passed, {t['failed']} failed."]
+    return "\n".join(out).rstrip() + "\n"
+
+
+def build() -> None:
+    d = collect()
+    block = dashboard(d)
+    (REPORTS / "REPORT.md").write_text("# modernization-delivery-cockpit report\n\nGenerated by `python -m mdc report`.\n\n"
+                                       + block + "\n## Weekly status\n\n" + (REPORTS / "weekly_status.md").read_text()
+                                       if (REPORTS / "weekly_status.md").exists() else block)
+    readme = ROOT / "README.md"
+    if readme.exists():
+        text = readme.read_text()
+        text = re.sub(re.escape(START) + r".*?" + re.escape(END), lambda _: f"{START}\n{block}{END}", text, flags=re.S)
+        readme.write_text(text)
+    web = ROOT / "web" / "public"
+    if web.exists():
+        slim = {k: v for k, v in d.items() if k not in ("parity_dev",)}
+        if slim.get("parity_heldout"):
+            slim["parity_heldout"] = {k: v for k, v in slim["parity_heldout"].items() if k != "runs"}
+        (web / "data.json").write_text(json.dumps(slim, indent=1, default=str) + "\n")
+    print("wrote reports/REPORT.md" + (" and the README dashboard" if readme.exists() else ""))

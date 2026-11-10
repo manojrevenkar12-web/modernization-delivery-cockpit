@@ -1,0 +1,40 @@
+{
+  "_comment": "Decisions taken on the intake findings. A finding without an agreed decision is open; open high findings drive the risk status.",
+  "decisions": [
+    {
+      "finding": "F01",
+      "decision": "Order, status and line items become one document, written atomically; the stock decrement and the order insert run in one multi-document transaction on the Atlas replica set",
+      "owner": "Customer architect + Delivery tech lead",
+      "date": "2026-11-18",
+      "status": "agreed"
+    },
+    {
+      "finding": "F02",
+      "decision": "Order ids move to an atomic findOneAndUpdate($inc) on the sequences collection; id format unchanged",
+      "owner": "Delivery tech lead",
+      "date": "2026-11-18",
+      "status": "agreed"
+    },
+    {
+      "finding": "F04",
+      "decision": "Keep legacy inner-join behaviour (accounts without a banner, orders without a status are not returned); parity tests pin it",
+      "owner": "Customer product owner",
+      "date": "2026-11-19",
+      "status": "agreed"
+    },
+    {
+      "finding": "F05",
+      "decision": "Keep % and _ as wildcards in search for this release; product owner to decide on escaping afterwards",
+      "owner": "Customer product owner",
+      "date": "2026-11-19",
+      "status": "agreed"
+    },
+    {
+      "finding": "F06",
+      "decision": "Money as Decimal128; totals reconciled after each migration rehearsal",
+      "owner": "Delivery tech lead",
+      "date": "2026-11-17",
+      "status": "agreed"
+    }
+  ]
+}

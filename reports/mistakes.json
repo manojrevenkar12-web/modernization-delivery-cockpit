@@ -1,0 +1,38 @@
+{
+ "dropped-inner-join": {
+  "caught": true,
+  "divergent_calls": 18,
+  "first_caught_at_call": 35,
+  "doc": "Returns the account even when its favourite category has no banner row."
+ },
+ "forgot-lower-name": {
+  "caught": true,
+  "divergent_calls": 33,
+  "first_caught_at_call": 7,
+  "doc": "Matches the search pattern against the stored name, forgetting lower(name)."
+ },
+ "literal-underscore": {
+  "caught": true,
+  "divergent_calls": 5,
+  "first_caught_at_call": 9,
+  "doc": "Treats LIKE's `_` as a literal character rather than \"any one character\"."
+ },
+ "unsorted-history": {
+  "caught": true,
+  "divergent_calls": 53,
+  "first_caught_at_call": 95,
+  "doc": "Drops ORDER BY ORDERDATE: order history comes back in insertion order."
+ },
+ "inventory-increment": {
+  "caught": true,
+  "divergent_calls": 99,
+  "first_caught_at_call": 13,
+  "doc": "Adds the ordered quantity to stock instead of subtracting it."
+ },
+ "statusless-orders": {
+  "caught": false,
+  "divergent_calls": 0,
+  "first_caught_at_call": null,
+  "doc": "Returns orders that have no status, which the legacy inner join hides."
+ }
+}

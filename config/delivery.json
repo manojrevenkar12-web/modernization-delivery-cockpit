@@ -1,0 +1,104 @@
+{
+  "_comment": "Delivery settings: how scope turns into effort, the team, how forecasts are made and how status is set. Every number the cockpit uses lives here.",
+  "estimate_weights": {
+    "base": 3,
+    "statement": 1,
+    "write": 1.5,
+    "join": 1,
+    "table": 0.5,
+    "finding": 2
+  },
+  "team": {
+    "engineers": 4,
+    "sprint_days": 10,
+    "focus_factor": 0.7,
+    "genai_speedup": {
+      "low": 1.2,
+      "mode": 1.8,
+      "high": 3.0
+    },
+    "engagement_start": "2026-11-16",
+    "engineer_days_per_point": 1.0,
+    "non_working_days": [
+      "2026-12-24",
+      "2026-12-25",
+      "2026-12-26",
+      "2026-12-31",
+      "2027-01-01"
+    ]
+  },
+  "forecast": {
+    "simulations": 4000,
+    "effort_sigma": {
+      "base": 0.25,
+      "per_finding": 0.08
+    },
+    "commitment_percentile": 85,
+    "rolling_min_sprints": 2,
+    "checkpoint_sprint": 3
+  },
+  "status": {
+    "schedule_amber_days": 0,
+    "schedule_red_days": 10,
+    "parity_green": 1.0,
+    "parity_amber": 0.9,
+    "open_high_red": 3,
+    "open_high_amber": 1
+  },
+  "engagements": {
+    "_comment": "The synthetic world used to check forecasts. Planners do not see these values; they only see points, findings and observed throughput.",
+    "work_packages": [
+      6,
+      14
+    ],
+    "points": [
+      5,
+      40
+    ],
+    "findings": [
+      0,
+      3
+    ],
+    "true_speedup": {
+      "low": 1.0,
+      "mode": 1.5,
+      "high": 2.6
+    },
+    "true_sigma": {
+      "base": 0.35,
+      "per_finding": 0.15
+    },
+    "scope_discovery": {
+      "probability": 0.4,
+      "extra_share": [
+        0.1,
+        0.3
+      ],
+      "sprint": [
+        1,
+        4
+      ]
+    },
+    "capacity_dip": {
+      "probability": 0.3,
+      "drop": [
+        0.3,
+        0.6
+      ],
+      "sprints": [
+        1,
+        2
+      ],
+      "start": [
+        0,
+        4
+      ]
+    },
+    "max_sprints": 40
+  },
+  "customer": {
+    "name": "JPetStore (reference application)",
+    "target_end": "2027-02-26",
+    "status_week": "2026-11-20"
+  }
+}

@@ -1,0 +1,47 @@
+{
+ "set": "heldout",
+ "reference_class_from_dev": {
+  "engagements": 120,
+  "p50": 1.34,
+  "p85": 1.929,
+  "p95": 2.226
+ },
+ "score": {
+  "engagements": 120,
+  "methods": {
+   "plan": {
+    "on_time": 0.158,
+    "late": 101,
+    "late_warned_before_due": 99,
+    "median_warning_lead_sprints": 2.05,
+    "false_alarms": 6,
+    "median_buffer_sprints": 0.0
+   },
+   "monte_carlo": {
+    "on_time": 0.375,
+    "late": 75,
+    "late_warned_before_due": 75,
+    "median_warning_lead_sprints": 2.56,
+    "false_alarms": 25,
+    "median_buffer_sprints": 0.71
+   },
+   "reference_class": {
+    "on_time": 0.85,
+    "late": 18,
+    "late_warned_before_due": 18,
+    "median_warning_lead_sprints": 5.21,
+    "false_alarms": 23,
+    "median_buffer_sprints": 4.03
+   }
+  },
+  "mae_sprints": {
+   "plan": 2.03,
+   "monte_carlo_p50": 2.33,
+   "rolling_p50_at_sprint_3": 1.2
+  },
+  "rolling_p85_coverage_at_checkpoint": 0.705,
+  "checkpoint_sprint": 3,
+  "median_actual_sprints": 5.48
+ },
+ "seconds": 8.1
+}

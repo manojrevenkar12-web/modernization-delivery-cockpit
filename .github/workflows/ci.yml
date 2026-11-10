@@ -1,0 +1,46 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  python-on-mongodb:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:8.0
+        ports: ["27017:27017"]
+    env:
+      MONGO_URI: mongodb://localhost:27017
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "pymongo>=4.8" "mongomock>=4.1" pytest
+      - name: Tests against MongoDB 8.0
+        run: python -m pytest
+      - name: Dev parity workloads against MongoDB 8.0
+        run: |
+          python -m mdc parity --set dev
+          python -c "import json,sys; d=json.load(open('reports/parity_dev.json')); print(d['backend'], d['agreed'], d['operations']); sys.exit(d['agreed'] != d['operations'])"
+  python-in-process:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "pymongo>=4.8" "mongomock>=4.1" pytest
+      - run: python -m pytest
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx vitest run
+      - run: npx vite build

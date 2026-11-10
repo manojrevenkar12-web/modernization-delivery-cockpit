@@ -1,0 +1,410 @@
+{
+ "set": "dev",
+ "workloads": 3,
+ "operations": 3255,
+ "agreed": 3255,
+ "divergence_count": 0,
+ "statements_total": 25,
+ "statements_validated": 25,
+ "statement_calls": {
+  "getAccountByUsername": 170,
+  "getAccountByUsernameAndPassword": 253,
+  "updateAccount": 83,
+  "insertAccount": 87,
+  "updateProfile": 83,
+  "insertProfile": 54,
+  "updateSignon": 41,
+  "insertSignon": 54,
+  "getCategory": 275,
+  "getCategoryList": 275,
+  "getItemListByProduct": 275,
+  "getItem": 319,
+  "getInventoryQuantity": 319,
+  "updateInventoryQuantity": 180,
+  "getLineItemsByOrderId": 44,
+  "insertLineItem": 180,
+  "getOrder": 102,
+  "getOrdersByUsername": 282,
+  "insertOrder": 180,
+  "insertOrderStatus": 180,
+  "getProduct": 275,
+  "getProductListByCategory": 275,
+  "searchProductList": 173,
+  "getSequence": 180,
+  "updateSequence": 180
+ },
+ "migrated": {
+  "accounts": 2,
+  "banners": 5,
+  "categories": 5,
+  "products": 16,
+  "items": 28,
+  "orders": 0,
+  "sequences": 1,
+  "suppliers": 2
+ },
+ "backend": "mongomock",
+ "seconds": 1.0,
+ "runs": [
+  {
+   "operations": 1094,
+   "agreed": 1094,
+   "divergences": [],
+   "divergence_count": 0,
+   "statements": {
+    "getAccountByUsername": {
+     "calls": 54,
+     "divergent_calls": 0
+    },
+    "getAccountByUsernameAndPassword": {
+     "calls": 75,
+     "divergent_calls": 0
+    },
+    "updateAccount": {
+     "calls": 21,
+     "divergent_calls": 0
+    },
+    "insertAccount": {
+     "calls": 33,
+     "divergent_calls": 0
+    },
+    "updateProfile": {
+     "calls": 21,
+     "divergent_calls": 0
+    },
+    "insertProfile": {
+     "calls": 22,
+     "divergent_calls": 0
+    },
+    "updateSignon": {
+     "calls": 12,
+     "divergent_calls": 0
+    },
+    "insertSignon": {
+     "calls": 22,
+     "divergent_calls": 0
+    },
+    "getCategory": {
+     "calls": 95,
+     "divergent_calls": 0
+    },
+    "getCategoryList": {
+     "calls": 95,
+     "divergent_calls": 0
+    },
+    "getItemListByProduct": {
+     "calls": 95,
+     "divergent_calls": 0
+    },
+    "getItem": {
+     "calls": 105,
+     "divergent_calls": 0
+    },
+    "getInventoryQuantity": {
+     "calls": 105,
+     "divergent_calls": 0
+    },
+    "updateInventoryQuantity": {
+     "calls": 68,
+     "divergent_calls": 0
+    },
+    "getLineItemsByOrderId": {
+     "calls": 10,
+     "divergent_calls": 0
+    },
+    "insertLineItem": {
+     "calls": 68,
+     "divergent_calls": 0
+    },
+    "getOrder": {
+     "calls": 27,
+     "divergent_calls": 0
+    },
+    "getOrdersByUsername": {
+     "calls": 95,
+     "divergent_calls": 0
+    },
+    "insertOrder": {
+     "calls": 68,
+     "divergent_calls": 0
+    },
+    "insertOrderStatus": {
+     "calls": 68,
+     "divergent_calls": 0
+    },
+    "getProduct": {
+     "calls": 95,
+     "divergent_calls": 0
+    },
+    "getProductListByCategory": {
+     "calls": 95,
+     "divergent_calls": 0
+    },
+    "searchProductList": {
+     "calls": 56,
+     "divergent_calls": 0
+    },
+    "getSequence": {
+     "calls": 68,
+     "divergent_calls": 0
+    },
+    "updateSequence": {
+     "calls": 68,
+     "divergent_calls": 0
+    }
+   },
+   "statements_total": 25,
+   "statements_validated": 25,
+   "migrated": {
+    "accounts": 2,
+    "banners": 5,
+    "categories": 5,
+    "products": 16,
+    "items": 28,
+    "orders": 0,
+    "sequences": 1,
+    "suppliers": 2
+   }
+  },
+  {
+   "operations": 1111,
+   "agreed": 1111,
+   "divergences": [],
+   "divergence_count": 0,
+   "statements": {
+    "getAccountByUsername": {
+     "calls": 57,
+     "divergent_calls": 0
+    },
+    "getAccountByUsernameAndPassword": {
+     "calls": 86,
+     "divergent_calls": 0
+    },
+    "updateAccount": {
+     "calls": 29,
+     "divergent_calls": 0
+    },
+    "insertAccount": {
+     "calls": 28,
+     "divergent_calls": 0
+    },
+    "updateProfile": {
+     "calls": 29,
+     "divergent_calls": 0
+    },
+    "insertProfile": {
+     "calls": 17,
+     "divergent_calls": 0
+    },
+    "updateSignon": {
+     "calls": 13,
+     "divergent_calls": 0
+    },
+    "insertSignon": {
+     "calls": 17,
+     "divergent_calls": 0
+    },
+    "getCategory": {
+     "calls": 96,
+     "divergent_calls": 0
+    },
+    "getCategoryList": {
+     "calls": 96,
+     "divergent_calls": 0
+    },
+    "getItemListByProduct": {
+     "calls": 96,
+     "divergent_calls": 0
+    },
+    "getItem": {
+     "calls": 115,
+     "divergent_calls": 0
+    },
+    "getInventoryQuantity": {
+     "calls": 115,
+     "divergent_calls": 0
+    },
+    "updateInventoryQuantity": {
+     "calls": 52,
+     "divergent_calls": 0
+    },
+    "getLineItemsByOrderId": {
+     "calls": 19,
+     "divergent_calls": 0
+    },
+    "insertLineItem": {
+     "calls": 52,
+     "divergent_calls": 0
+    },
+    "getOrder": {
+     "calls": 40,
+     "divergent_calls": 0
+    },
+    "getOrdersByUsername": {
+     "calls": 92,
+     "divergent_calls": 0
+    },
+    "insertOrder": {
+     "calls": 52,
+     "divergent_calls": 0
+    },
+    "insertOrderStatus": {
+     "calls": 52,
+     "divergent_calls": 0
+    },
+    "getProduct": {
+     "calls": 96,
+     "divergent_calls": 0
+    },
+    "getProductListByCategory": {
+     "calls": 96,
+     "divergent_calls": 0
+    },
+    "searchProductList": {
+     "calls": 55,
+     "divergent_calls": 0
+    },
+    "getSequence": {
+     "calls": 52,
+     "divergent_calls": 0
+    },
+    "updateSequence": {
+     "calls": 52,
+     "divergent_calls": 0
+    }
+   },
+   "statements_total": 25,
+   "statements_validated": 25,
+   "migrated": {
+    "accounts": 2,
+    "banners": 5,
+    "categories": 5,
+    "products": 16,
+    "items": 28,
+    "orders": 0,
+    "sequences": 1,
+    "suppliers": 2
+   }
+  },
+  {
+   "operations": 1050,
+   "agreed": 1050,
+   "divergences": [],
+   "divergence_count": 0,
+   "statements": {
+    "getAccountByUsername": {
+     "calls": 59,
+     "divergent_calls": 0
+    },
+    "getAccountByUsernameAndPassword": {
+     "calls": 92,
+     "divergent_calls": 0
+    },
+    "updateAccount": {
+     "calls": 33,
+     "divergent_calls": 0
+    },
+    "insertAccount": {
+     "calls": 26,
+     "divergent_calls": 0
+    },
+    "updateProfile": {
+     "calls": 33,
+     "divergent_calls": 0
+    },
+    "insertProfile": {
+     "calls": 15,
+     "divergent_calls": 0
+    },
+    "updateSignon": {
+     "calls": 16,
+     "divergent_calls": 0
+    },
+    "insertSignon": {
+     "calls": 15,
+     "divergent_calls": 0
+    },
+    "getCategory": {
+     "calls": 84,
+     "divergent_calls": 0
+    },
+    "getCategoryList": {
+     "calls": 84,
+     "divergent_calls": 0
+    },
+    "getItemListByProduct": {
+     "calls": 84,
+     "divergent_calls": 0
+    },
+    "getItem": {
+     "calls": 99,
+     "divergent_calls": 0
+    },
+    "getInventoryQuantity": {
+     "calls": 99,
+     "divergent_calls": 0
+    },
+    "updateInventoryQuantity": {
+     "calls": 60,
+     "divergent_calls": 0
+    },
+    "getLineItemsByOrderId": {
+     "calls": 15,
+     "divergent_calls": 0
+    },
+    "insertLineItem": {
+     "calls": 60,
+     "divergent_calls": 0
+    },
+    "getOrder": {
+     "calls": 35,
+     "divergent_calls": 0
+    },
+    "getOrdersByUsername": {
+     "calls": 95,
+     "divergent_calls": 0
+    },
+    "insertOrder": {
+     "calls": 60,
+     "divergent_calls": 0
+    },
+    "insertOrderStatus": {
+     "calls": 60,
+     "divergent_calls": 0
+    },
+    "getProduct": {
+     "calls": 84,
+     "divergent_calls": 0
+    },
+    "getProductListByCategory": {
+     "calls": 84,
+     "divergent_calls": 0
+    },
+    "searchProductList": {
+     "calls": 62,
+     "divergent_calls": 0
+    },
+    "getSequence": {
+     "calls": 60,
+     "divergent_calls": 0
+    },
+    "updateSequence": {
+     "calls": 60,
+     "divergent_calls": 0
+    }
+   },
+   "statements_total": 25,
+   "statements_validated": 25,
+   "migrated": {
+    "accounts": 2,
+    "banners": 5,
+    "categories": 5,
+    "products": 16,
+    "items": 28,
+    "orders": 0,
+    "sequences": 1,
+    "suppliers": 2
+   }
+  }
+ ]
+}

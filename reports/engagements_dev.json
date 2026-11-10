@@ -1,0 +1,47 @@
+{
+ "set": "dev",
+ "reference_class": {
+  "engagements": 120,
+  "p50": 1.34,
+  "p85": 1.929,
+  "p95": 2.226
+ },
+ "score": {
+  "engagements": 120,
+  "methods": {
+   "plan": {
+    "on_time": 0.2,
+    "late": 96,
+    "late_warned_before_due": 94,
+    "median_warning_lead_sprints": 2.05,
+    "false_alarms": 11,
+    "median_buffer_sprints": 0.0
+   },
+   "monte_carlo": {
+    "on_time": 0.317,
+    "late": 82,
+    "late_warned_before_due": 82,
+    "median_warning_lead_sprints": 2.52,
+    "false_alarms": 17,
+    "median_buffer_sprints": 0.7
+   },
+   "reference_class": {
+    "on_time": 0.85,
+    "late": 18,
+    "late_warned_before_due": 18,
+    "median_warning_lead_sprints": 5.0,
+    "false_alarms": 29,
+    "median_buffer_sprints": 4.02
+   }
+  },
+  "mae_sprints": {
+   "plan": 2.08,
+   "monte_carlo_p50": 2.35,
+   "rolling_p50_at_sprint_3": 1.47
+  },
+  "rolling_p85_coverage_at_checkpoint": 0.727,
+  "checkpoint_sprint": 3,
+  "median_actual_sprints": 5.94
+ },
+ "seconds": 8.8
+}

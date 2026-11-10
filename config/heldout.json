@@ -1,0 +1,15 @@
+{
+ "_comment": "SHA-256 of the held-out parity workloads and engagements, written before either ran.",
+ "parity": {
+  "seeds": [
+   2027
+  ],
+  "journeys": 600,
+  "sha256": "79a0258ea430ec4d879df54b22b8284d3744df8a5b50db1c8af1572e3a4dbc27"
+ },
+ "engagements": {
+  "seed": 2027,
+  "count": 120,
+  "sha256": "1856f4bd7bf3d980832d432d8f2ef2ee2881405ef80094ee97c7070ef6bcfd90"
+ }
+}

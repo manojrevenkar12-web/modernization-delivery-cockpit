@@ -1,0 +1,701 @@
+{
+ "inventory": {
+  "java_files": 25,
+  "java_lines": 3865,
+  "tables": 13,
+  "statements": 25,
+  "writes": 11,
+  "joins": 11,
+  "transactional_methods": 4
+ },
+ "statements": {
+  "getAccountByUsername": {
+   "id": "getAccountByUsername",
+   "mapper": "AccountMapper",
+   "kind": "select",
+   "tables": [
+    "account",
+    "profile",
+    "signon",
+    "bannerdata"
+   ],
+   "joins": 3,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "getAccountByUsernameAndPassword": {
+   "id": "getAccountByUsernameAndPassword",
+   "mapper": "AccountMapper",
+   "kind": "select",
+   "tables": [
+    "account",
+    "profile",
+    "signon",
+    "bannerdata"
+   ],
+   "joins": 3,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "updateAccount": {
+   "id": "updateAccount",
+   "mapper": "AccountMapper",
+   "kind": "update",
+   "tables": [
+    "account"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "insertAccount": {
+   "id": "insertAccount",
+   "mapper": "AccountMapper",
+   "kind": "insert",
+   "tables": [
+    "account"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "updateProfile": {
+   "id": "updateProfile",
+   "mapper": "AccountMapper",
+   "kind": "update",
+   "tables": [
+    "profile"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "insertProfile": {
+   "id": "insertProfile",
+   "mapper": "AccountMapper",
+   "kind": "insert",
+   "tables": [
+    "profile"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "updateSignon": {
+   "id": "updateSignon",
+   "mapper": "AccountMapper",
+   "kind": "update",
+   "tables": [
+    "signon"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "insertSignon": {
+   "id": "insertSignon",
+   "mapper": "AccountMapper",
+   "kind": "insert",
+   "tables": [
+    "signon"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "getCategory": {
+   "id": "getCategory",
+   "mapper": "CategoryMapper",
+   "kind": "select",
+   "tables": [
+    "category"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "getCategoryList": {
+   "id": "getCategoryList",
+   "mapper": "CategoryMapper",
+   "kind": "select",
+   "tables": [
+    "category"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "getItemListByProduct": {
+   "id": "getItemListByProduct",
+   "mapper": "ItemMapper",
+   "kind": "select",
+   "tables": [
+    "item",
+    "product"
+   ],
+   "joins": 1,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "getItem": {
+   "id": "getItem",
+   "mapper": "ItemMapper",
+   "kind": "select",
+   "tables": [
+    "item",
+    "inventory",
+    "product"
+   ],
+   "joins": 2,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "getInventoryQuantity": {
+   "id": "getInventoryQuantity",
+   "mapper": "ItemMapper",
+   "kind": "select",
+   "tables": [
+    "inventory"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "updateInventoryQuantity": {
+   "id": "updateInventoryQuantity",
+   "mapper": "ItemMapper",
+   "kind": "update",
+   "tables": [
+    "inventory"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "getLineItemsByOrderId": {
+   "id": "getLineItemsByOrderId",
+   "mapper": "LineItemMapper",
+   "kind": "select",
+   "tables": [
+    "lineitem"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "insertLineItem": {
+   "id": "insertLineItem",
+   "mapper": "LineItemMapper",
+   "kind": "insert",
+   "tables": [
+    "lineitem"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "getOrder": {
+   "id": "getOrder",
+   "mapper": "OrderMapper",
+   "kind": "select",
+   "tables": [
+    "orders",
+    "orderstatus"
+   ],
+   "joins": 1,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "getOrdersByUsername": {
+   "id": "getOrdersByUsername",
+   "mapper": "OrderMapper",
+   "kind": "select",
+   "tables": [
+    "orders",
+    "orderstatus"
+   ],
+   "joins": 1,
+   "order_by": true,
+   "like": false,
+   "writes": false
+  },
+  "insertOrder": {
+   "id": "insertOrder",
+   "mapper": "OrderMapper",
+   "kind": "insert",
+   "tables": [
+    "orders"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "insertOrderStatus": {
+   "id": "insertOrderStatus",
+   "mapper": "OrderMapper",
+   "kind": "insert",
+   "tables": [
+    "orderstatus"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  },
+  "getProduct": {
+   "id": "getProduct",
+   "mapper": "ProductMapper",
+   "kind": "select",
+   "tables": [
+    "product"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "getProductListByCategory": {
+   "id": "getProductListByCategory",
+   "mapper": "ProductMapper",
+   "kind": "select",
+   "tables": [
+    "product"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "searchProductList": {
+   "id": "searchProductList",
+   "mapper": "ProductMapper",
+   "kind": "select",
+   "tables": [
+    "product"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": true,
+   "writes": false
+  },
+  "getSequence": {
+   "id": "getSequence",
+   "mapper": "SequenceMapper",
+   "kind": "select",
+   "tables": [
+    "sequence"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": false
+  },
+  "updateSequence": {
+   "id": "updateSequence",
+   "mapper": "SequenceMapper",
+   "kind": "update",
+   "tables": [
+    "sequence"
+   ],
+   "joins": 0,
+   "order_by": false,
+   "like": false,
+   "writes": true
+  }
+ },
+ "service_methods": [
+  {
+   "service": "AccountService",
+   "method": "getAccount",
+   "transactional": false,
+   "statements": [
+    "getAccountByUsername"
+   ]
+  },
+  {
+   "service": "AccountService",
+   "method": "getAccount",
+   "transactional": false,
+   "statements": [
+    "getAccountByUsernameAndPassword"
+   ]
+  },
+  {
+   "service": "AccountService",
+   "method": "insertAccount",
+   "transactional": true,
+   "statements": [
+    "insertAccount",
+    "insertProfile",
+    "insertSignon"
+   ]
+  },
+  {
+   "service": "AccountService",
+   "method": "updateAccount",
+   "transactional": true,
+   "statements": [
+    "updateAccount",
+    "updateProfile",
+    "updateSignon"
+   ]
+  },
+  {
+   "service": "CatalogService",
+   "method": "getCategoryList",
+   "transactional": false,
+   "statements": [
+    "getCategoryList"
+   ]
+  },
+  {
+   "service": "CatalogService",
+   "method": "getCategory",
+   "transactional": false,
+   "statements": [
+    "getCategory"
+   ]
+  },
+  {
+   "service": "CatalogService",
+   "method": "getProduct",
+   "transactional": false,
+   "statements": [
+    "getProduct"
+   ]
+  },
+  {
+   "service": "CatalogService",
+   "method": "getProductListByCategory",
+   "transactional": false,
+   "statements": [
+    "getProductListByCategory"
+   ]
+  },
+  {
+   "service": "CatalogService",
+   "method": "searchProductList",
+   "transactional": false,
+   "statements": [
+    "searchProductList"
+   ]
+  },
+  {
+   "service": "CatalogService",
+   "method": "getItemListByProduct",
+   "transactional": false,
+   "statements": [
+    "getItemListByProduct"
+   ]
+  },
+  {
+   "service": "CatalogService",
+   "method": "getItem",
+   "transactional": false,
+   "statements": [
+    "getItem"
+   ]
+  },
+  {
+   "service": "CatalogService",
+   "method": "isItemInStock",
+   "transactional": false,
+   "statements": [
+    "getInventoryQuantity"
+   ]
+  },
+  {
+   "service": "OrderService",
+   "method": "insertOrder",
+   "transactional": true,
+   "statements": [
+    "updateInventoryQuantity",
+    "insertOrder",
+    "insertOrderStatus",
+    "insertLineItem",
+    "getSequence",
+    "updateSequence"
+   ]
+  },
+  {
+   "service": "OrderService",
+   "method": "getOrder",
+   "transactional": true,
+   "statements": [
+    "getOrder",
+    "getLineItemsByOrderId",
+    "getItem",
+    "getInventoryQuantity"
+   ]
+  },
+  {
+   "service": "OrderService",
+   "method": "getOrdersByUsername",
+   "transactional": false,
+   "statements": [
+    "getOrdersByUsername"
+   ]
+  },
+  {
+   "service": "OrderService",
+   "method": "getNextId",
+   "transactional": false,
+   "statements": [
+    "getSequence",
+    "updateSequence"
+   ]
+  }
+ ],
+ "findings": [
+  {
+   "id": "F01",
+   "kind": "risk",
+   "severity": "high",
+   "title": "OrderService.insertOrder writes 3 collections in one transaction",
+   "evidence": "@Transactional; writes items, orders, sequences via updateInventoryQuantity, insertOrder, insertOrderStatus, insertLineItem, getSequence, updateSequence",
+   "action": "Needs a multi-document transaction (replica set, as on Atlas) or a redesign so the write lands in one document; agree which with the customer architect",
+   "statements": [
+    "updateInventoryQuantity",
+    "insertOrder",
+    "insertOrderStatus",
+    "insertLineItem",
+    "updateSequence"
+   ],
+   "data": false
+  },
+  {
+   "id": "F02",
+   "kind": "risk",
+   "severity": "high",
+   "title": "Order ids come from a read-then-write sequence",
+   "evidence": "OrderService reads getSequence then writes updateSequence with no lock: two concurrent orders can get the same id",
+   "action": "Replace with an atomic findOneAndUpdate($inc); confirm the id format stays the same for the customer's reports",
+   "statements": [
+    "getSequence",
+    "updateSequence"
+   ],
+   "data": false
+  },
+  {
+   "id": "F03",
+   "kind": "issue",
+   "severity": "high",
+   "title": "Passwords are stored in plain text",
+   "evidence": "SIGNON.PASSWORD is varchar(25), compared directly in SQL",
+   "action": "Out of scope for a like-for-like migration: raise with the customer's security lead and agree a hashing change as a separate, tested step",
+   "statements": [
+    "getAccountByUsername",
+    "getAccountByUsernameAndPassword",
+    "updateSignon",
+    "insertSignon"
+   ],
+   "data": false
+  },
+  {
+   "id": "F04",
+   "kind": "risk",
+   "severity": "medium",
+   "title": "6 reads use inner joins that hide rows",
+   "evidence": "e.g. getAccountByUsername, getAccountByUsernameAndPassword, getItem, getItemListByProduct: a missing profile, banner, status or inventory row drops the result",
+   "action": "Keep the legacy behaviour unless the customer decides otherwise; parity tests pin it",
+   "statements": [
+    "getAccountByUsername",
+    "getAccountByUsernameAndPassword",
+    "getItemListByProduct",
+    "getItem",
+    "getOrder",
+    "getOrdersByUsername"
+   ],
+   "data": false
+  },
+  {
+   "id": "F05",
+   "kind": "risk",
+   "severity": "medium",
+   "title": "Search passes user input into SQL LIKE",
+   "evidence": "searchProductList: % and _ typed by a user are wildcards",
+   "action": "Translate LIKE exactly (anchored regex on a lower-cased copy of the name, indexed); flag the wildcard behaviour to the product owner",
+   "statements": [
+    "searchProductList"
+   ],
+   "data": false
+  },
+  {
+   "id": "F06",
+   "kind": "risk",
+   "severity": "medium",
+   "title": "Money columns are DECIMAL",
+   "evidence": "listprice, unitcost, unitprice, totalprice are decimal(10,2)",
+   "action": "Store as Decimal128, never as double; reconcile totals after the data migration",
+   "statements": [],
+   "data": true
+  },
+  {
+   "id": "F07",
+   "kind": "risk",
+   "severity": "low",
+   "title": "Child tables have no foreign keys",
+   "evidence": "lineitem, orderstatus, inventory can hold orphan rows",
+   "action": "Count orphans in the customer's production copy before migration; agree whether to drop or quarantine them",
+   "statements": [],
+   "data": true
+  }
+ ],
+ "work_packages": [
+  {
+   "id": "WP1",
+   "name": "Catalogue browsing and search",
+   "statements": [
+    "getCategory",
+    "getCategoryList",
+    "getProduct",
+    "getProductListByCategory",
+    "searchProductList",
+    "getItemListByProduct",
+    "getItem"
+   ],
+   "drivers": {
+    "statements": 7,
+    "writes": 0,
+    "joins": 3,
+    "tables": 4
+   },
+   "findings": [
+    "F04",
+    "F05"
+   ],
+   "points": 19.0
+  },
+  {
+   "id": "WP2",
+   "name": "Accounts and sign-in",
+   "statements": [
+    "getAccountByUsername",
+    "getAccountByUsernameAndPassword",
+    "updateAccount",
+    "insertAccount",
+    "updateProfile",
+    "insertProfile",
+    "updateSignon",
+    "insertSignon"
+   ],
+   "drivers": {
+    "statements": 8,
+    "writes": 6,
+    "joins": 6,
+    "tables": 4
+   },
+   "findings": [
+    "F03",
+    "F04"
+   ],
+   "points": 32.0
+  },
+  {
+   "id": "WP3",
+   "name": "Order placement",
+   "statements": [
+    "insertOrder",
+    "insertOrderStatus",
+    "insertLineItem",
+    "updateInventoryQuantity"
+   ],
+   "drivers": {
+    "statements": 4,
+    "writes": 4,
+    "joins": 0,
+    "tables": 4
+   },
+   "findings": [
+    "F01"
+   ],
+   "points": 17.0
+  },
+  {
+   "id": "WP4",
+   "name": "Order history",
+   "statements": [
+    "getOrder",
+    "getOrdersByUsername",
+    "getLineItemsByOrderId"
+   ],
+   "drivers": {
+    "statements": 3,
+    "writes": 0,
+    "joins": 2,
+    "tables": 3
+   },
+   "findings": [
+    "F04"
+   ],
+   "points": 11.5
+  },
+  {
+   "id": "WP5",
+   "name": "Stock and id generation",
+   "statements": [
+    "getSequence",
+    "updateSequence",
+    "getInventoryQuantity"
+   ],
+   "drivers": {
+    "statements": 3,
+    "writes": 1,
+    "joins": 0,
+    "tables": 2
+   },
+   "findings": [
+    "F01",
+    "F02"
+   ],
+   "points": 12.5
+  },
+  {
+   "id": "WP6",
+   "name": "Data migration and reconciliation",
+   "statements": [],
+   "drivers": {
+    "statements": 0,
+    "writes": 0,
+    "joins": 0,
+    "tables": 13
+   },
+   "findings": [
+    "F06",
+    "F07"
+   ],
+   "points": 13.5
+  },
+  {
+   "id": "WP7",
+   "name": "Cut-over rehearsal and hypercare",
+   "statements": [],
+   "drivers": {
+    "statements": 0,
+    "writes": 0,
+    "joins": 0,
+    "tables": 0
+   },
+   "findings": [],
+   "points": 3.0
+  }
+ ]
+}

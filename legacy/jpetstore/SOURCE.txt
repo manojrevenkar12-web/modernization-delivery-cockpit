@@ -1,0 +1,3 @@
+JPetStore 6 by the MyBatis team, https://github.com/mybatis/jpetstore-6
+commit c3dbf6f56f6bb0730478b0f38e16ec6dfd204b23, Apache License 2.0 (LICENSE in this folder).
+Copied unchanged: Java sources, MyBatis mapper XML and the HSQLDB schema and data scripts.
