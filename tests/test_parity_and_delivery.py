@@ -26,7 +26,7 @@ def test_workload_is_deterministic():
 
 def test_parity_agrees_on_every_call(workload):
     r = run_parity(workload)
-    assert r.agreed == r.operations and r.statements_validated >= 20
+    assert r.agreed == r.operations and r.statements_validated >= 20, json.dumps(r.divergences[:3], default=str)[:3000]
 
 
 @pytest.mark.parametrize("name", ["dropped-inner-join", "forgot-lower-name", "literal-underscore",
